@@ -1,0 +1,30 @@
+# top-most EditorConfig file
+root = true
+
+# Global defaults for all files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+# Go source files and Makefiles must use tabs
+[{*.go,Makefile}]
+indent_style = tab
+tab_width = 4
+
+# Unset standard rules for Go module system files to prevent formatting conflicts
+[go.{mod,sum,work,work.sum}]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset
+
+# Web/Config specific overrides (optional)
+[{*.json,*.yaml,*.yml}]
+indent_style = space
+indent_size = 2

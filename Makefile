@@ -1,16 +1,23 @@
-.DEFAULT_GOAL := run
+.PHONY: run
+run:
+	@go run ./cmd/service/main.go
 
+.PHONY: build
 build:
-	go build -o ./bin/app
+	@go build -o ./temp/bin/service ./cmd/service/main.go
 
-run: build
-	./bin/app
-
+.PHONY: dev
 dev: build
-	./bin/app -dev
+	@./temp/bin/service
 
-test:
-	go test ./... -v
+.PHONY: docker/up
+docker/up:
+	@docker compose -f ./deploy/compose.local.yaml up -d $(service)
 
-cover:
-	go test ./... -coverprofile=coverage.out
+.PHONY: docker/stop
+docker/stop:
+	@docker compose -f ./deploy/compose.local.yaml stop
+
+.PHONY: docker/down
+docker/down:
+	@docker compose -f ./deploy/compose.local.yaml down

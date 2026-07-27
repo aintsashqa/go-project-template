@@ -1,0 +1,4 @@
+@addr=localhost:50051
+
+### Health
+GET http://{{addr}}/health HTTP/1.1
